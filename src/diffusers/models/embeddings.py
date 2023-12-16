@@ -880,7 +880,8 @@ class Resampler(nn.Module):
 
         x = self.proj_in(x)
 
-        for ln0, ln1, attn, ff in self.layers:
+        for layer in self.layers:
+            ln0, ln1, attn, ff = layer[0], layer[1], layer[2], layer[3]
             residual = latents
 
             encoder_hidden_states = ln0(x)
